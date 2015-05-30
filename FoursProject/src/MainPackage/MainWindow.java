@@ -1,16 +1,11 @@
 package MainPackage;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import java.awt.Component;
-import javax.swing.JCheckBox;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
-import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -18,6 +13,8 @@ import java.awt.event.ActionEvent;
 public class MainWindow {
 
 	private JFrame frmFours;
+	//private GameRectangle area;
+	private GamePanel gamePanel;
 
 	/**
 	 * Launch the application.
@@ -48,8 +45,8 @@ public class MainWindow {
 	private void initialize() {
 		frmFours = new JFrame();
 		frmFours.setTitle("Fours");
-		frmFours.setResizable(false);
-		frmFours.setBounds(100, 100, 450, 300);
+		frmFours.setResizable(true);
+		frmFours.setBounds(100, 100, 430, 323);
 		frmFours.setLocationRelativeTo(null);
 		frmFours.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -84,16 +81,25 @@ public class MainWindow {
 		gbc_btnNewButton.gridy = 1;
 		frmFours.getContentPane().add(btnNewButton, gbc_btnNewButton);
 		
-		JLabel lblTuBedziPanel = new JLabel("Tu bedzi\u0119 panel gry");
-		lblTuBedziPanel.setForeground(Color.MAGENTA);
-		lblTuBedziPanel.setBackground(Color.LIGHT_GRAY);
-		GridBagConstraints gbc_lblTuBedziPanel = new GridBagConstraints();
-		gbc_lblTuBedziPanel.gridheight = 3;
-		gbc_lblTuBedziPanel.gridwidth = 3;
-		gbc_lblTuBedziPanel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTuBedziPanel.gridx = 0;
-		gbc_lblTuBedziPanel.gridy = 2;
-		frmFours.getContentPane().add(lblTuBedziPanel, gbc_lblTuBedziPanel);
+//////////////////////////////////////////////////////////////
+		gamePanel = new GamePanel();
+		GridBagConstraints gbc_gamePanel = new GridBagConstraints();
+		gbc_gamePanel.gridheight = 3;
+		gbc_gamePanel.gridwidth = 3;
+		gbc_gamePanel.gridx = 0;
+		gbc_gamePanel.gridy = 2;
+		frmFours.getContentPane().add(gamePanel, gbc_gamePanel);
+		
+		/*
+		area = new GameRectangle();
+		GridBagConstraints gbc_area = new GridBagConstraints();
+		gbc_area.gridheight = 3;
+		gbc_area.gridwidth = 3;
+		gbc_area.gridx = 0;
+		gbc_area.gridy = 2;
+		frmFours.getContentPane().add(area, gbc_area);
+		*/
+//////////////////////////////////////////////////////////////////		
 		
 		JButton btnWyniki = new JButton("Wyniki");
 		GridBagConstraints gbc_btnWyniki = new GridBagConstraints();
