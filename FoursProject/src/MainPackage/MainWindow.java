@@ -15,7 +15,9 @@ public class MainWindow {
 	private JFrame frmFours;
 	//private GameRectangle area;
 	private GamePanel gamePanel;
-
+	
+	// coœ, siema!!
+	
 	/**
 	 * Launch the application.
 	 */
