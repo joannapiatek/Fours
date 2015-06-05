@@ -1,39 +1,86 @@
 package MainPackage;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
 
 
-public class GamePanel extends JPanel{
+public class GamePanel extends JPanel implements KeyListener{
 	//Members//
 	private static final long serialVersionUID = 1L;
 	private int width;
 	private int height;
-	private ChoicePanel choicePanel;
+	private int margin = 8;
+	private ChoiceColumnPanel ChoiceColumnPanel;
 	private GameRectangle gameRectangle;	
 	
 	public GamePanel() 
 	{
 		componentsInit();
-		
-		choicePanel = new ChoicePanel(width);
-		height = gameRectangle.getHeight() + choicePanel.getHeight();
-		setPreferredSize(new Dimension(width+6,height+6));
-		
 		setComponents();
+		addKeyListener(this);
 	}
 	
+	/*
+	public void OnKeyPress(KeyEvent ke) {
+		int code = ke.getKeyCode();
+		if (code == KeyEvent.VK_RIGHT)
+		{
+			ChoiceColumnPanel.nextColumn();
+		}
+		else if (code == KeyEvent.VK_LEFT)
+		{
+			ChoiceColumnPanel.previousColumn();
+		}
+	}*/
+	
+	public void addNotify() 
+	{
+        super.addNotify();
+        requestFocusInWindow();
+    }
+	
+	
+
+//KeyListener	
+	@Override
+	public void keyPressed(KeyEvent ke) {
+		// TODO Auto-generated method stub	
+	}
+
+	@Override
+	public void keyReleased(KeyEvent ke) {
+		int code = ke.getKeyCode();
+		if (code == KeyEvent.VK_RIGHT)
+		{
+			ChoiceColumnPanel.nextColumn();
+		}
+		else if (code == KeyEvent.VK_LEFT)
+		{
+			ChoiceColumnPanel.previousColumn();
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent ke) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+//Init functions////////////////////////////////////////////////////	
 	public void componentsInit()
 	{
-		gameRectangle = new GameRectangle();
+		gameRectangle = new GameRectangle(margin);
 		width = gameRectangle.getWidth();
+		ChoiceColumnPanel = new ChoiceColumnPanel(width, margin);
+		height = gameRectangle.getHeight() + ChoiceColumnPanel.getHeight();
+		setPreferredSize(new Dimension(width+6,height+6));
 	}
 	
 	public void setComponents()
@@ -46,12 +93,12 @@ public class GamePanel extends JPanel{
 		setLayout(gridBagLayout);
 		
 		
-		GridBagConstraints gbc_choicePanel = new GridBagConstraints();
-		gbc_choicePanel.insets = new Insets(0, 0, 0, 0);
-		gbc_choicePanel.gridy = 0;
-		gbc_choicePanel.gridx = 0;
-		gbc_choicePanel.fill = GridBagConstraints.BOTH;
-		add(choicePanel, gbc_choicePanel);
+		GridBagConstraints gbc_ChoiceColumnPanel = new GridBagConstraints();
+		gbc_ChoiceColumnPanel.insets = new Insets(0, 0, 0, 0);
+		gbc_ChoiceColumnPanel.gridy = 0;
+		gbc_ChoiceColumnPanel.gridx = 0;
+		gbc_ChoiceColumnPanel.fill = GridBagConstraints.BOTH;
+		add(ChoiceColumnPanel, gbc_ChoiceColumnPanel);
 
 		GridBagConstraints gbc_gameRectangle = new GridBagConstraints();
 		gbc_gameRectangle.insets = new Insets(0, 0, 0, 0);

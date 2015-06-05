@@ -2,6 +2,7 @@ package MainPackage;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyListener;
 
 import javax.swing.JComponent;
 
@@ -17,15 +18,11 @@ public class GameRectangle extends JComponent {
 	private int circleRadius;
 	
 	
-	public GameRectangle()
+	public GameRectangle(int newMargin)
 	{
+		margin = newMargin;
 		circleTabInit();
-		
-		circleRadius = circleTab[0][0].getRadius();
-		width = (circleRadius + margin) * 7 + margin;
-		height = (circleRadius + margin) * 6 + margin;
-		
-		setPreferredSize(new Dimension(width, height));
+		setWidthAndHeight();
 	}
 	
 	@Override
@@ -63,6 +60,14 @@ public class GameRectangle extends JComponent {
 		        g.fillOval(posX, posY, circleRadius,circleRadius);
 			}
 		}
+	}
+	
+	public void setWidthAndHeight()
+	{
+		circleRadius = circleTab[0][0].getRadius();
+		width = (circleRadius + margin) * 7 + margin;
+		height = (circleRadius + margin) * 6 + margin;
+		setPreferredSize(new Dimension(width, height));
 	}
 	
 	public int getHeight()

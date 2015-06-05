@@ -1,19 +1,26 @@
 package MainPackage;
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JButton;
+
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
 import javax.swing.JLabel;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 
-public class MainWindow {
+public class MainWindow implements FocusListener {
 
 	private JFrame frmFours;
-	//private GameRectangle area;
 	private GamePanel gamePanel;
 
 	/**
@@ -89,16 +96,6 @@ public class MainWindow {
 		gbc_gamePanel.gridx = 0;
 		gbc_gamePanel.gridy = 2;
 		frmFours.getContentPane().add(gamePanel, gbc_gamePanel);
-		
-		/*
-		area = new GameRectangle();
-		GridBagConstraints gbc_area = new GridBagConstraints();
-		gbc_area.gridheight = 3;
-		gbc_area.gridwidth = 3;
-		gbc_area.gridx = 0;
-		gbc_area.gridy = 2;
-		frmFours.getContentPane().add(area, gbc_area);
-		*/
 //////////////////////////////////////////////////////////////////		
 		
 		JButton btnWyniki = new JButton("Wyniki");
@@ -111,4 +108,35 @@ public class MainWindow {
 		
 		frmFours.pack();
 	}
+
+	/*
+	@Override
+	public void keyPressed(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		gamePanel.OnKeyPress(arg0);
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}*/
+
+	@Override
+	public void focusGained(FocusEvent e) {
+		gamePanel.requestFocusInWindow();
+	}
+
+	@Override
+	public void focusLost(FocusEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
