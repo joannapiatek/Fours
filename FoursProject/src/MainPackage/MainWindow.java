@@ -22,7 +22,9 @@ public class MainWindow implements FocusListener {
 
 	private JFrame frmFours;
 	private GamePanel gamePanel;
-
+	
+	// coœ, siema!!
+	
 	/**
 	 * Launch the application.
 	 */
