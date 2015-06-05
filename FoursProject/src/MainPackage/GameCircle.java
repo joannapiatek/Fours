@@ -1,39 +1,43 @@
 package MainPackage;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.geom.Ellipse2D;
 
-public class GameCircle
+import javax.swing.JComponent;
+
+public class GameCircle extends JComponent
 {
 	private boolean filled;
-	private int radius = 19;
+	private int radius = 30;
 	private Color currentColor;
 	
-	public GameCircle(boolean filled)
+	public GameCircle()
 	{
-		//setPreferredSize(new Dimension(radius, radius));
-		this.setFilled(filled);		
+		setPreferredSize(new Dimension(radius, radius));
+		setFilled(false);		
 		currentColor = Color.white;
+	
 	}
 	
-	/*
+	
 	@Override
     public void paintComponent(Graphics g)
     {
-		super.paintComponent(g);
-		
 		Dimension size = getSize();
 		int scale = 3;
         int w = size.width-scale;
         int h = size.height-scale;
         
-        Ellipse2D.Double circle = new Ellipse2D.Double (0, 0, w, h);
-        Graphics2D g2 = (Graphics2D)g;
-        g2.setColor(currentColor);
-        g2.fill(circle);
+        g.setColor(currentColor);
+        g.fillOval(0, 0, w, h);
         
-        //g.setColor(currentColor);
-        //g.fillOval(0, 0, w, h);
-        
-    }*/
+    }
+	
 
 	public boolean isFilled() {
 		return filled;
