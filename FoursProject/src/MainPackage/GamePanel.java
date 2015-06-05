@@ -6,12 +6,14 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 
-public class GamePanel extends JPanel implements KeyListener{
+public class GamePanel extends JPanel {//implements MouseListener{
 	//Members//
 	private static final long serialVersionUID = 1L;
 	private int width;
@@ -24,7 +26,9 @@ public class GamePanel extends JPanel implements KeyListener{
 	{
 		componentsInit();
 		setComponents();
-		addKeyListener(this);
+		//addMouseListener(this);
+		//addKeyListener(this);
+		//addNotify();
 	}
 	
 	/*
@@ -49,6 +53,7 @@ public class GamePanel extends JPanel implements KeyListener{
 	
 
 //KeyListener	
+	/*
 	@Override
 	public void keyPressed(KeyEvent ke) {
 		// TODO Auto-generated method stub	
@@ -72,7 +77,7 @@ public class GamePanel extends JPanel implements KeyListener{
 		// TODO Auto-generated method stub
 		
 	}
-	
+	*/
 //Init functions////////////////////////////////////////////////////	
 	public void componentsInit()
 	{
@@ -109,4 +114,35 @@ public class GamePanel extends JPanel implements KeyListener{
 		
 		setBorder(BorderFactory.createEtchedBorder());
 	}
+/*
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	*/
 }

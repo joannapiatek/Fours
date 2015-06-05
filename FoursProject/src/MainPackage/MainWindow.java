@@ -12,18 +12,12 @@ import javax.swing.JLabel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 
-public class MainWindow implements FocusListener {
+public class MainWindow {
 
 	private JFrame frmFours;
 	private GamePanel gamePanel;
-	
-	// coœ, siema!!
 	
 	/**
 	 * Launch the application.
@@ -109,36 +103,6 @@ public class MainWindow implements FocusListener {
 		frmFours.getContentPane().add(btnWyniki, gbc_btnWyniki);
 		
 		frmFours.pack();
-	}
-
-	/*
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		gamePanel.OnKeyPress(arg0);
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}*/
-
-	@Override
-	public void focusGained(FocusEvent e) {
-		gamePanel.requestFocusInWindow();
-	}
-
-	@Override
-	public void focusLost(FocusEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 }

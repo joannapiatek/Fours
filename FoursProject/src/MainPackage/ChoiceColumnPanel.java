@@ -6,11 +6,16 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JComponent;
+import javax.xml.transform.Source;
 
 
 
-public class ChoiceColumnPanel extends JComponent{
+public class ChoiceColumnPanel extends JComponent implements MouseListener{
 	//Members//
 	private static final long serialVersionUID = 1L;
 	private int width;
@@ -57,9 +62,11 @@ public class ChoiceColumnPanel extends JComponent{
 		triangleTab = new Triangle[columns];
 		for (int i=0; i<columns; i++)
 		{
-			triangleTab[i] = new Triangle(triangleWidth,triangleHeight, mainColor);
+			triangleTab[i] = new Triangle(triangleWidth,triangleHeight, i);
+			triangleTab[i].addMouseListener(this);
 		}
 		triangleTab[currentColumn].setColor(playerColor);
+		addMouseListener(this);
 	}
 	
 	public void initTriangleCoordinates()
@@ -112,27 +119,13 @@ public class ChoiceColumnPanel extends JComponent{
 		
 		return false;
 	}
-	
-	public void nextColumn()
+
+	public void changeColumn(int newColumn)
 	{
-		if ( currentColumn < columns-1 )
-		{
-			triangleTab[currentColumn].setColor(mainColor);
-			currentColumn++;
-			triangleTab[currentColumn].setColor(playerColor);
-			repaint();
-		}
-	}
-	
-	public void previousColumn()
-	{
-		if ( currentColumn > 0 )
-		{
-			triangleTab[currentColumn].setColor(mainColor);
-			currentColumn--;
-			triangleTab[currentColumn].setColor(playerColor);
-			repaint();
-		}
+		triangleTab[currentColumn].setColor(triangleTab[0].bgdColor);
+		currentColumn = newColumn;
+		triangleTab[newColumn].setColor(playerColor);
+		repaint();
 	}
 ////////////////////////////////////////////////////////
 	
@@ -140,5 +133,41 @@ public class ChoiceColumnPanel extends JComponent{
 	{
 		return height;
 	}
+
+@Override
+public void mouseClicked(MouseEvent e) {
+	Object source = e.getSource();
+	if (source instanceof Triangle){
+		Triangle sourceTriangle = (Triangle) source;
+		changeColumn( sourceTriangle.getPosition() );
+	}
+}
+
+@Override
+public void mouseEntered(MouseEvent e) {
+	repaint();
+}
+
+@Override
+public void mouseExited(MouseEvent e) {
+	Object source = e.getSource();
+	if (source instanceof Triangle )
+	{
+		triangleTab[currentColumn].setColor(playerColor);
+	}
+	repaint();
+}
+
+@Override
+public void mousePressed(MouseEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void mouseReleased(MouseEvent e) {
+	// TODO Auto-generated method stub
+	
+}
 
 }
