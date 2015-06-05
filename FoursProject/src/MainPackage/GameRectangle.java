@@ -38,84 +38,31 @@ public class GameRectangle extends JComponent {
     {
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(0, 0, width, height);
-		
-		// circleTabDraw(g);
 	}
 		
 	
 	public void circleTabInit()
+	{
+		circleTab = new GameCircle [rows][columns];
+		for (int i=0; i<rows; i++)
+		{
+			for (int j=0; j<columns; j++)
+			{
+				circleTab[i][j] = new GameCircle();	
+				add(circleTab[i][j], gbc);
+			}
+			gbc.gridy++;
+		}		
+	}
+	
+	public void layoutInit()
 	{
 		gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
 		gbc = new GridBagConstraints();
 		gbc.insets = new Insets(4,4,4,4);
 		gbc.gridy = 0;
-		
-		circleTab = new GameCircle [rows][columns];
-		for (int i=0; i<rows; i++)
-		{
-			for (int j=0; j<columns; j++)
-			{
-				circleTab[i][j] = new GameCircle();
-			
-//				circleTab[i][j].setCurrentColor(Color.WHITE);
-//				add(circleTab[i][j], gbc);
-				
-				
-			}
-		}
-		
-		for (int i=0; i<rows; i++)
-		{
-			for (int j=0; j<columns; j++)
-			{
-				add(circleTab[i][j], gbc);
-			}
-			gbc.gridy++;
-		}
-
-		
-		
-		
-		
-		
 	}
-	
-	public void layoutInit()
-	{
-		/*gridBagLayout = new GridBagLayout();
-		this.setLayout(gridBagLayout);
-		gbc = new GridBagConstraints();
-		gbc.insets = new Insets(margin,margin,margin,margin);*/
-		//gbc.insets = new Insets(0,0,0,0);
-		
-		//add(new GameCircle(), gbc);
-		
-//		for (int i=0; i<rows; i++)
-//		{
-//			for (int j=0; j<columns; j++)
-//			add(circleTab[i][j], gbc);
-//			if (j==0)
-//				gbc.insets = new Insets(0, margin, margin, 0);
-//		}
-		
-	}
-	
-	
-/*	public void circleTabDraw(Graphics g)
-	{
-		int posX, posY;
-		for (int i=0; i<rows; i++)
-		{
-			for (int j=0; j<columns; j++)
-			{
-				posX = margin*(j+1) + j*circleRadius;
-				posY = margin*(i+1) + i*circleRadius;
-				g.setColor(circleTab[i][j].getCurrentColor());
-		        g.fillOval(posX, posY, circleRadius,circleRadius);
-			}
-		}
-	}*/
 	
 	public void setWidthAndHeight()
 	{

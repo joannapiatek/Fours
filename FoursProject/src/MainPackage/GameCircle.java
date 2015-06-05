@@ -13,13 +13,13 @@ import javax.swing.JComponent;
 public class GameCircle extends JComponent
 {
 	private boolean filled;
-	private int radius = 30;
+	private int radius = 19;
 	private Color currentColor;
 	
 	public GameCircle()
 	{
 		setPreferredSize(new Dimension(radius, radius));
-		setFilled(false);		
+		disableFilled();		
 		currentColor = Color.white;
 	
 	}
@@ -29,7 +29,7 @@ public class GameCircle extends JComponent
     public void paintComponent(Graphics g)
     {
 		Dimension size = getSize();
-		int scale = 3;
+		int scale = 0;
         int w = size.width-scale;
         int h = size.height-scale;
         
@@ -43,23 +43,25 @@ public class GameCircle extends JComponent
 		return filled;
 	}
 
-	public void setFilled(boolean filled) {
-		this.filled = filled;
+	public void setFilled() {
+		filled=true;
 	}
 	
-	public int getRadius()
-	{
+	public void disableFilled() {
+		filled=false;
+	}
+	
+	public int getRadius() {
 		return radius;
 	}
 	
-	public Color getCurrentColor()
-	{
+	public Color getCurrentColor() {
 		return currentColor;
 	}
 	
-	public void setCurrentColor(Color color)
-	{
+	public void setCurrentColor(Color color) {
 		currentColor=color;
+		setFilled();
 	}
 
 }
