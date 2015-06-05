@@ -52,11 +52,11 @@ public class ConfigFrame extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel label1 = new JLabel("Nazwa gracza 1:");
-		label1.setBounds(22, 14, 85, 14);
+		label1.setBounds(18, 13, 97, 14);
 		contentPane.add(label1);
 		
 		JLabel label2 = new JLabel("Nazwa gracza 2:");
-		label2.setBounds(22, 44, 85, 14);
+		label2.setBounds(18, 43, 97, 14);
 		contentPane.add(label2);
 		
 		playerName1 = new JTextField();
