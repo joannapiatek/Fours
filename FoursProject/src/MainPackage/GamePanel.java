@@ -4,16 +4,15 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
-public class GamePanel extends JPanel {//implements MouseListener{
+
+
+public class GamePanel extends JPanel implements PropertyChangeListener {
 	//Members//
 	private static final long serialVersionUID = 1L;
 	private int width;
@@ -26,64 +25,16 @@ public class GamePanel extends JPanel {//implements MouseListener{
 	{
 		componentsInit();
 		setComponents();
-		//addMouseListener(this);
-		//addKeyListener(this);
-		//addNotify();
 	}
 	
-	/*
-	public void OnKeyPress(KeyEvent ke) {
-		int code = ke.getKeyCode();
-		if (code == KeyEvent.VK_RIGHT)
-		{
-			ChoiceColumnPanel.nextColumn();
-		}
-		else if (code == KeyEvent.VK_LEFT)
-		{
-			ChoiceColumnPanel.previousColumn();
-		}
-	}*/
-	
-	public void addNotify() 
-	{
-        super.addNotify();
-        requestFocusInWindow();
-    }
-	
-	
-
-//KeyListener	
-	/*
-	@Override
-	public void keyPressed(KeyEvent ke) {
-		// TODO Auto-generated method stub	
-	}
-
-	@Override
-	public void keyReleased(KeyEvent ke) {
-		int code = ke.getKeyCode();
-		if (code == KeyEvent.VK_RIGHT)
-		{
-			ChoiceColumnPanel.nextColumn();
-		}
-		else if (code == KeyEvent.VK_LEFT)
-		{
-			ChoiceColumnPanel.previousColumn();
-		}
-	}
-
-	@Override
-	public void keyTyped(KeyEvent ke) {
-		// TODO Auto-generated method stub
-		
-	}
-	*/
 //Init functions////////////////////////////////////////////////////	
 	public void componentsInit()
 	{
 		gameRectangle = new GameRectangle(margin);
 		width = gameRectangle.getWidth();
 		ChoiceColumnPanel = new ChoiceColumnPanel(width, margin);
+		ChoiceColumnPanel.addPropertyChangeListener(this);
+		
 		height = gameRectangle.getHeight() + ChoiceColumnPanel.getHeight();
 		setPreferredSize(new Dimension(width+6,height+6));
 	}
@@ -114,35 +65,14 @@ public class GamePanel extends JPanel {//implements MouseListener{
 		
 		setBorder(BorderFactory.createEtchedBorder());
 	}
-/*
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+	public void propertyChange(PropertyChangeEvent arg0) 
+	{
+		int col = ChoiceColumnPanel.getCurrentColumn();
+		gameRectangle.fillCircle(ChoiceColumnPanel.columnsPointers[col], col);
+		boolean success = ChoiceColumnPanel.decrColumnPointer(col);
 	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	*/
 }
+
+

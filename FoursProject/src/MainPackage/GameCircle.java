@@ -2,16 +2,11 @@ package MainPackage;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.geom.Ellipse2D;
-
 import javax.swing.JComponent;
 
 public class GameCircle extends JComponent
 {
+	private static final long serialVersionUID = 1L;
 	private boolean filled;
 	private int radius = 19;
 	private Color currentColor;

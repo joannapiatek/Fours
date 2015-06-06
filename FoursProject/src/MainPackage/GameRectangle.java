@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.KeyListener;
-
 import javax.swing.JComponent;
 
 public class GameRectangle extends JComponent {
@@ -29,8 +27,7 @@ public class GameRectangle extends JComponent {
 		layoutInit();
 		
 		circleTabInit();
-		setWidthAndHeight();
-		
+		setWidthAndHeight();	
 	}
 	
 	@Override
@@ -39,8 +36,13 @@ public class GameRectangle extends JComponent {
 		g.setColor(Color.DARK_GRAY);
 		g.fillRect(0, 0, width, height);
 	}
-		
 	
+	public void fillCircle(int x, int y)
+	{
+ 		circleTab[x][y].setCurrentColor(Color.RED);
+		repaint();
+	}
+//Init methods/////////////////////////////////////////////	
 	public void circleTabInit()
 	{
 		circleTab = new GameCircle [rows][columns];
@@ -71,7 +73,9 @@ public class GameRectangle extends JComponent {
 		height = (circleRadius + margin) * 6 + margin;
 		setPreferredSize(new Dimension(width, height));
 	}
-	
+////////////////////////////////////////////////////////
+
+///Get and set/////////////////////////////////////////
 	public int getHeight()
 	{
 		return height;
@@ -81,5 +85,4 @@ public class GameRectangle extends JComponent {
 	{
 		return width;
 	}
-
 }

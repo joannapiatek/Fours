@@ -6,12 +6,15 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JComponent;
-import javax.xml.transform.Source;
+
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 
 
 
@@ -20,8 +23,8 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 	private static final long serialVersionUID = 1L;
 	private int width;
 	private int height;
-	private int[] columnsPointers;
-	private int currentColumn;
+	public int[] columnsPointers;
+	private int currentColumn = 0;
 	private int columns = 7;
 	private int rows = 6;
 	private Color mainColor = Color.DARK_GRAY;
@@ -31,6 +34,8 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 	private int triangleMargin;
 	private int triangleWidth;
 	private int triangleHeight;
+	
+	private PropertyChangeSupport propChangeSupport = new PropertyChangeSupport(this);
 	
 	
 	public ChoiceColumnPanel(int w, int margin)
@@ -47,6 +52,14 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 		layoutInit();
 	}
 	
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+	    propChangeSupport.addPropertyChangeListener(listener);
+	  }
+
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+	    propChangeSupport.removePropertyChangeListener(listener);
+	  }
+
 	@Override
     public void paintComponent(Graphics g)
     {
@@ -100,7 +113,7 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 		columnsPointers = new int [columns];
 		for (int i = 0; i < columns; i++)
 		{
-			columnsPointers[i] = rows;
+			columnsPointers[i] = rows-1;
 		}
 	}
 	
@@ -122,52 +135,69 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 
 	public void changeColumn(int newColumn)
 	{
-		triangleTab[currentColumn].setColor(triangleTab[0].bgdColor);
+		int oldColumn = 0;
+		if (newColumn != currentColumn){
+			oldColumn = currentColumn;
+		}
+		else if(newColumn == 0){
+			oldColumn = 1;
+		}
+		else {
+			oldColumn = 0;
+		}
+			
+			
+		triangleTab[oldColumn].setColor(triangleTab[0].bgdColor);
 		currentColumn = newColumn;
+		
+		propChangeSupport.firePropertyChange("currentColumn", oldColumn, newColumn);		
 		triangleTab[newColumn].setColor(playerColor);
 		repaint();
 	}
-////////////////////////////////////////////////////////
 	
+//Get, set//////////////////////////////////////////////////////	
 	public int getHeight()
 	{
 		return height;
 	}
-
-@Override
-public void mouseClicked(MouseEvent e) {
-	Object source = e.getSource();
-	if (source instanceof Triangle){
-		Triangle sourceTriangle = (Triangle) source;
-		changeColumn( sourceTriangle.getPosition() );
-	}
-}
-
-@Override
-public void mouseEntered(MouseEvent e) {
-	repaint();
-}
-
-@Override
-public void mouseExited(MouseEvent e) {
-	Object source = e.getSource();
-	if (source instanceof Triangle )
+	public int getCurrentColumn()
 	{
-		triangleTab[currentColumn].setColor(playerColor);
+		return currentColumn;
 	}
-	repaint();
-}
 
-@Override
-public void mousePressed(MouseEvent e) {
-	// TODO Auto-generated method stub
 	
-}
-
-@Override
-public void mouseReleased(MouseEvent e) {
-	// TODO Auto-generated method stub
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		Object source = e.getSource();
+		if (source instanceof Triangle){
+			Triangle sourceTriangle = (Triangle) source;
+			changeColumn( sourceTriangle.getPosition() );
+		}
+	}
 	
-}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		repaint();
+	}
+	
+	@Override
+	public void mouseExited(MouseEvent e) {
+		Object source = e.getSource();
+		if (source instanceof Triangle )
+		{
+			triangleTab[currentColumn].setColor(playerColor);
+		}
+		repaint();
+	}
+	
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub	
+	}
 
 }
