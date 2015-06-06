@@ -13,7 +13,7 @@ import javax.swing.JComponent;
 public class GameCircle extends JComponent
 {
 	private boolean filled;
-	private int radius = 30;
+	private int radius = 19;
 	private Color currentColor;
 	
 	public GameCircle()
