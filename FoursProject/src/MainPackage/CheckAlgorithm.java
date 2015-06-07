@@ -11,9 +11,10 @@ public class CheckAlgorithm {
 	private Player pl1;
 	private Player pl2;
 		
-	public CheckAlgorithm(int rows, int columns,Player player1, Player player2){
+	public CheckAlgorithm(int rows, int columns, Player player1, Player player2){
 		this.rows = rows;
 		this.columns = columns;
+		
 		Player pl1 = player1;
 		Player pl2 = player2;
 		
@@ -38,8 +39,18 @@ public class CheckAlgorithm {
 	public void checkAll()
 	{
 		checkHorizontal();
+		if(player1Win || player2Win)
+		{
+			playerWonAction();
+		}
+		
 		checkVertical();
-		checkDiagonally();
+		if(player1Win || player2Win)
+		{
+			playerWonAction();
+		}
+		
+		checkDiagonal();
 	}
 	
 	
@@ -61,6 +72,83 @@ public class CheckAlgorithm {
 				
 			}
 		}
+	}
+	
+	public void checkVertical()
+	{
+		for (int j=0; j<7; j++)
+		{
+			for (int i=0; i<3; i++)
+			{
+				if(pl1.isActiveTurn()){
+					if(player1Tab[i][j] && player1Tab[i+1][j] && player1Tab[i+2][j] && player1Tab[i+3][j])
+						player1Win = true;
+				}
+				
+				if(pl2.isActiveTurn()){
+					if(player2Tab[i][j] && player2Tab[i+1][j] && player2Tab[i+2][j] && player2Tab[i+3][j])
+						player2Win = true;
+				}
+			}
+		}
+	}
+	
+	public void checkDiagonal()
+	{
+		slash();			//			/
+		if(player1Win || player2Win)
+		{
+			playerWonAction();
+		}
+		
+		backslash(); 		//			\
+		if(player1Win || player2Win)
+		{
+			playerWonAction();
+		}
+	}
+	
+	public void slash()
+	{
+		for (int i=0; i<3; i++)
+		{
+			for(int j=0; j<4; j++)
+			{
+				if(pl1.isActiveTurn()){
+					if(player1Tab[i][j] && player1Tab[i+1][j+1] && player1Tab[i+2][j+2] && player1Tab[i+3][j+3])
+						player1Win = true;
+				}
+				
+				if(pl2.isActiveTurn()){
+					if(player2Tab[i][j] && player2Tab[i+1][j+1] && player2Tab[i+2][j+2] && player2Tab[i+3][j+3])
+						player2Win = true;
+				}
+			}
+		}
+	}
+	
+	public void backslash()
+	{
+		for (int i=0; i<3; i++)
+		{
+			for(int j=3; j<7; j++)
+			{
+				if(pl1.isActiveTurn()){
+					if(player1Tab[i][j] && player1Tab[i+1][j-1] && player1Tab[i+2][j-2] && player1Tab[i+3][j-3])
+						player1Win = true;
+				}
+				
+				if(pl2.isActiveTurn()){
+					if(player2Tab[i][j] && player2Tab[i+1][j-1] && player2Tab[i+2][j-2] && player2Tab[i+3][j-3])
+						player2Win = true;
+				}
+			}
+		}
+	}
+	
+	public void playerWonAction()
+	{
+		// jak ktoœ wygra³, to dzieje siê to:
 	}
 	
 }
