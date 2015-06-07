@@ -10,6 +10,7 @@ public class Player {
 	private Color circleColor;
 	private int turnCount;
 	private int winCount;
+
 	
 	public Player(String playerName, Color playerColor){
 		Name = playerName;
@@ -18,6 +19,10 @@ public class Player {
 	
 	public int getTurnCount(){
 		return turnCount;
+	}
+	
+	public boolean isActiveTurn(){
+		return isMyTurn;
 	}
 	
 	public void setActiveTurn(){
