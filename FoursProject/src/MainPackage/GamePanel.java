@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 		componentsInit();
 		setComponents();
 	}
-	
+
 //Init functions////////////////////////////////////////////////////	
 	public void componentsInit()
 	{

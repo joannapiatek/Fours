@@ -18,6 +18,7 @@ public class MainWindow {
 
 	private JFrame frmFours;
 	private GamePanel gamePanel;
+	private ConfigFrame configFrame;
 	
 	/**
 	 * Launch the application.
@@ -75,9 +76,12 @@ public class MainWindow {
 		
 		JButton btnNewButton = new JButton("Nowa gra");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				createFrame();			
 			}
 		});
+		
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton.gridx = 3;
@@ -105,4 +109,18 @@ public class MainWindow {
 		frmFours.pack();
 	}
 	
+	
+	public void createFrame()
+	{
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					configFrame = new ConfigFrame();
+					configFrame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 }

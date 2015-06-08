@@ -26,4 +26,9 @@ public class ConfigFrameColors extends JComponent{
 		g.fillOval(0, 0, radius, radius);
 		
 	}
+	
+	public Color getColor()
+	{
+		return color;
+	}
 }
