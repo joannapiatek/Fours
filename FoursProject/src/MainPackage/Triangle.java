@@ -17,6 +17,7 @@ public class Triangle extends JPanel implements MouseListener {
 	private int w;
 	private Color myColor;
 	public Color bgdColor;
+	private Color playerColor;
 	private int position;
 	
 	public Triangle(int width, int height, int column)
@@ -44,6 +45,11 @@ public class Triangle extends JPanel implements MouseListener {
 		myColor = color;
 	}
 	
+	public void setPlayerColor(Color color)
+	{
+		playerColor = color;
+	}
+	
 	public int getPosition()
 	{
 		return position;
@@ -54,7 +60,7 @@ public class Triangle extends JPanel implements MouseListener {
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		setColor(Color.white);
+		setColor(playerColor);
 		repaint();
 	}
 	@Override
@@ -70,6 +76,4 @@ public class Triangle extends JPanel implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 	}
-	
-
 }

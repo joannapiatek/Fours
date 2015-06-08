@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -47,8 +48,9 @@ public class MainWindow implements GameStartListener{
 	private void initialize() {
 		frmFours = new MainFrame();
 		frmFours.setTitle("Fours");
-		frmFours.setResizable(true);
+		frmFours.setResizable(false);
 		frmFours.setBounds(100, 100, 430, 323);
+		frmFours.setMinimumSize(new Dimension(430, 323));
 		frmFours.setLocationRelativeTo(null);
 		frmFours.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -87,13 +89,13 @@ public class MainWindow implements GameStartListener{
 		frmFours.getContentPane().add(btnNewButton, gbc_btnNewButton);
 		
 //////////////////////////////////////////////////////////////
-		frmFours.gamePanel = new GamePanel();
+		/*frmFours.gamePanel = new GamePanel();
 		GridBagConstraints gbc_gamePanel = new GridBagConstraints();
 		gbc_gamePanel.gridheight = 3;
 		gbc_gamePanel.gridwidth = 3;
 		gbc_gamePanel.gridx = 0;
 		gbc_gamePanel.gridy = 2;
-		frmFours.getContentPane().add(frmFours.gamePanel, gbc_gamePanel);
+		frmFours.getContentPane().add(frmFours.gamePanel, gbc_gamePanel);*/
 //////////////////////////////////////////////////////////////////		
 		
 		JButton btnWyniki = new JButton("Wyniki");

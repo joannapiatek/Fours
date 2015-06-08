@@ -166,6 +166,11 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 	public void setPlayerColor(Color color)
 	{
 		playerColor = color;
+		for (int i=0; i<columns; i++)
+		{
+			triangleTab[i].setPlayerColor(color);
+		}
+		
 	}
 	
 	@Override

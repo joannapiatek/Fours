@@ -1,6 +1,7 @@
 package MainPackage;
 
 import java.awt.Color;
+import java.awt.GridBagConstraints;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -30,6 +31,14 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 	
 	public void createGame()
 	{
+		gamePanel = new GamePanel();
+		GridBagConstraints gbc_gamePanel = new GridBagConstraints();
+		gbc_gamePanel.gridheight = 3;
+		gbc_gamePanel.gridwidth = 3;
+		gbc_gamePanel.gridx = 0;
+		gbc_gamePanel.gridy = 2;
+		getContentPane().add(gamePanel, gbc_gamePanel);
+		
 		player1 = cfgFrame.getPlayer1();
 		player2 = cfgFrame.getPlayer2();
 		player1.myLabel = lblGracz_1;
