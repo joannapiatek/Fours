@@ -14,11 +14,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class MainWindow {
-
-	private JFrame frmFours;
+public class MainWindow implements GameStartListener{
+	
+	private MainFrame frmFours;
 	private GamePanel gamePanel;
-	private ConfigFrame configFrame;
+	//private ConfigFrame configFrame;
 
 	
 	/**
@@ -48,7 +48,7 @@ public class MainWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmFours = new JFrame();
+		frmFours = new MainFrame();
 		frmFours.setTitle("Fours");
 		frmFours.setResizable(true);
 		frmFours.setBounds(100, 100, 430, 323);
@@ -61,25 +61,25 @@ public class MainWindow {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		frmFours.getContentPane().setLayout(gridBagLayout);
 		
-		JLabel lblGracz = new JLabel("Gracz1");
-		GridBagConstraints gbc_lblGracz = new GridBagConstraints();
-		gbc_lblGracz.insets = new Insets(0, 0, 5, 5);
-		gbc_lblGracz.gridx = 0;
-		gbc_lblGracz.gridy = 1;
-		frmFours.getContentPane().add(lblGracz, gbc_lblGracz);
-		
-		JLabel lblGracz_1 = new JLabel("Gracz2");
+		frmFours.lblGracz_1 = new JLabel("Gracz1");
 		GridBagConstraints gbc_lblGracz_1 = new GridBagConstraints();
 		gbc_lblGracz_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblGracz_1.gridx = 2;
+		gbc_lblGracz_1.gridx = 0;
 		gbc_lblGracz_1.gridy = 1;
-		frmFours.getContentPane().add(lblGracz_1, gbc_lblGracz_1);
+		frmFours.getContentPane().add(frmFours.lblGracz_1, gbc_lblGracz_1);
+		
+		frmFours.lblGracz_2 = new JLabel("Gracz2");
+		GridBagConstraints gbc_lblGracz_2 = new GridBagConstraints();
+		gbc_lblGracz_2.insets = new Insets(0, 0, 5, 5);
+		gbc_lblGracz_2.gridx = 2;
+		gbc_lblGracz_2.gridy = 1;
+		frmFours.getContentPane().add(frmFours.lblGracz_2, gbc_lblGracz_2);
 		
 		JButton btnNewButton = new JButton("Nowa gra");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				createFrame();			
+				createFrame();
 			}
 		});
 		
@@ -112,15 +112,22 @@ public class MainWindow {
 	
 	public void createFrame()
 	{
-		EventQueue.invokeLater(new Runnable() {
+		/*EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					configFrame = new ConfigFrame();
-					configFrame.setVisible(true);
-				} catch (Exception e) {
+				try {*/
+					frmFours.cfgFrame = new ConfigFrame();
+					frmFours.cfgFrame.setVisible(true);
+					frmFours.cfgFrame.addListener(frmFours);
+				/*} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-		});
+		});*/
+	}
+
+	@Override
+	public void gameStart() {
+		// TODO Auto-generated method stub
+		
 	}
 }

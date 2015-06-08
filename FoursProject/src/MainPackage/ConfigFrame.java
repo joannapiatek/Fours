@@ -1,6 +1,4 @@
 package MainPackage;
-import java.awt.Dimension;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,6 +10,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ConfigFrame extends JFrame {
@@ -23,12 +23,26 @@ public class ConfigFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField playerName1;
 	private JTextField playerName2;
+	public JButton btnNewButton;
 	private Player player1;
 	private Player player2;
+	
+	List<GameStartListener> listeners = new ArrayList<GameStartListener>();	
+	
+	public void addListener(GameStartListener listener){
+		listeners.add(listener);
+	}
+	
+	public void configFinished()
+	{
+		for (GameStartListener gsl : listeners)
+			gsl.gameStart();
+	}
 	/**
 	 * Launch the application.
 	 */
 	
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -41,15 +55,13 @@ public class ConfigFrame extends JFrame {
 			}
 		});
 	}
-	
+	*/
 	/**
 	 * Create the frame.
 	 */
 	public ConfigFrame() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		//setPreferredSize(new Dimension(268, 138));
-		
 		setBounds(100, 100, 268, 138);
 		
 		setLocationRelativeTo(null);
@@ -87,21 +99,27 @@ public class ConfigFrame extends JFrame {
 		chooseColor2.setLocation(221, 39);
 		contentPane.add(chooseColor2);
 		
-		JButton btnNewButton = new JButton("Grajmy!");
+		btnNewButton = new JButton("Grajmy!");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				player1 = new Player(playerName1.getText(), chooseColor1.getColor());
 				player2 = new Player(playerName2.getText(), chooseColor2.getColor());
 				
 				setVisible(false);
+				configFinished();
 			}
 		});
 		btnNewButton.setBounds(85, 76, 89, 23);
 		contentPane.add(btnNewButton);
-		
-		
-		
 	}
 	
+	public Player getPlayer1()
+	{
+		return player1;
+	}
 
+	public Player getPlayer2()
+	{
+		return player2;
+	}
 }

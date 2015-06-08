@@ -40,4 +40,9 @@ public class Player {
 	public void resetWinCount(){
 		winCount=0;
 	}
+	
+	public String getName()
+	{
+		return Name;
+	}
 }
