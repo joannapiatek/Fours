@@ -1,11 +1,14 @@
 package MainPackage;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -20,7 +23,8 @@ public class ConfigFrame extends JFrame {
 	private JPanel contentPane;
 	private JTextField playerName1;
 	private JTextField playerName2;
-
+	private Player player1;
+	private Player player2;
 	/**
 	 * Launch the application.
 	 */
@@ -41,8 +45,13 @@ public class ConfigFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public ConfigFrame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 280, 150);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		//setPreferredSize(new Dimension(268, 138));
+		
+		setBounds(100, 100, 268, 138);
+		
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -61,18 +70,11 @@ public class ConfigFrame extends JFrame {
 		contentPane.add(playerName1);
 		playerName1.setColumns(10);
 		
+		
 		playerName2 = new JTextField();
 		playerName2.setColumns(10);
 		playerName2.setBounds(125, 41, 86, 20);
 		contentPane.add(playerName2);
-		
-		JButton btnNewButton = new JButton("Grajmy!");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnNewButton.setBounds(85, 76, 89, 23);
-		contentPane.add(btnNewButton);
 		
 		ConfigFrameColors chooseColor1= new ConfigFrameColors(Color.BLUE);
 		chooseColor1.setSize(23, 23);
@@ -84,5 +86,21 @@ public class ConfigFrame extends JFrame {
 		chooseColor2.setLocation(221, 39);
 		contentPane.add(chooseColor2);
 		
+		JButton btnNewButton = new JButton("Grajmy!");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				player1 = new Player(playerName1.getText(), chooseColor1.getColor());
+				player2 = new Player(playerName2.getText(), chooseColor2.getColor());
+				
+				setVisible(false);
+			}
+		});
+		btnNewButton.setBounds(85, 76, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		
+		
 	}
+	
+
 }
