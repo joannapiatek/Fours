@@ -17,9 +17,6 @@ import java.awt.event.ActionEvent;
 public class MainWindow implements GameStartListener{
 	
 	private MainFrame frmFours;
-	private GamePanel gamePanel;
-	//private ConfigFrame configFrame;
-
 	
 	/**
 	 * Launch the application.
@@ -90,13 +87,13 @@ public class MainWindow implements GameStartListener{
 		frmFours.getContentPane().add(btnNewButton, gbc_btnNewButton);
 		
 //////////////////////////////////////////////////////////////
-		gamePanel = new GamePanel();
+		frmFours.gamePanel = new GamePanel();
 		GridBagConstraints gbc_gamePanel = new GridBagConstraints();
 		gbc_gamePanel.gridheight = 3;
 		gbc_gamePanel.gridwidth = 3;
 		gbc_gamePanel.gridx = 0;
 		gbc_gamePanel.gridy = 2;
-		frmFours.getContentPane().add(gamePanel, gbc_gamePanel);
+		frmFours.getContentPane().add(frmFours.gamePanel, gbc_gamePanel);
 //////////////////////////////////////////////////////////////////		
 		
 		JButton btnWyniki = new JButton("Wyniki");

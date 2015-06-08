@@ -76,7 +76,7 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 			triangleTab[i] = new Triangle(triangleWidth,triangleHeight, i);
 			triangleTab[i].addMouseListener(this);
 		}
-		triangleTab[currentColumn].setColor(playerColor);
+		//triangleTab[currentColumn].setColor(playerColor);
 		addMouseListener(this);
 	}
 	
@@ -163,6 +163,10 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 		return currentColumn;
 	}
 
+	public void setPlayerColor(Color color)
+	{
+		playerColor = color;
+	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -180,11 +184,6 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 	
 	@Override
 	public void mouseExited(MouseEvent e) {
-		Object source = e.getSource();
-		if (source instanceof Triangle )
-		{
-			triangleTab[currentColumn].setColor(playerColor);
-		}
 		repaint();
 	}
 	

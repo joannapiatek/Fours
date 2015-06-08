@@ -1,14 +1,17 @@
 package MainPackage;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 
 
@@ -18,14 +21,26 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 	private int width;
 	private int height;
 	private int margin = 8;
+	private boolean success = false;
 	private ChoiceColumnPanel ChoiceColumnPanel;
 	private GameRectangle gameRectangle;	
+	
+	private PropertyChangeSupport propChangeSupport = new PropertyChangeSupport(this);
 	
 	public GamePanel() 
 	{
 		componentsInit();
 		setComponents();
 	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+	    propChangeSupport.addPropertyChangeListener(listener);
+	  }
+
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+	    propChangeSupport.removePropertyChangeListener(listener);
+	  }
+	
 
 //Init functions////////////////////////////////////////////////////	
 	public void componentsInit()
@@ -71,8 +86,26 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 	{
 		int col = ChoiceColumnPanel.getCurrentColumn();
 		gameRectangle.fillCircle(ChoiceColumnPanel.columnsPointers[col], col);
-		boolean success = ChoiceColumnPanel.decrColumnPointer(col);
+		
+		success = ChoiceColumnPanel.decrColumnPointer(col);
+		propChangeSupport.firePropertyChange("success", false, success);
 	}
+	
+	public void setPlayerColor(Color color)
+	{
+		ChoiceColumnPanel.setPlayerColor(color);
+		gameRectangle.setPlayerColor(color);
+	}
+	
+	public boolean succeed()
+	{
+		return success;
+	}
+	public void resetSuccess()
+	{
+		success = false;
+	}
+	
 }
 
 

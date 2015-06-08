@@ -2,6 +2,8 @@ package MainPackage;
 
 import java.awt.Color;
 
+import javax.swing.JLabel;
+
 
 public class Player {
 	
@@ -10,6 +12,7 @@ public class Player {
 	private Color circleColor;
 	private int turnCount;
 	private int winCount;
+	public JLabel myLabel;
 
 	
 	public Player(String playerName, Color playerColor){
@@ -44,5 +47,10 @@ public class Player {
 	public String getName()
 	{
 		return Name;
+	}
+	
+	public Color getColor()
+	{
+		return circleColor;
 	}
 }

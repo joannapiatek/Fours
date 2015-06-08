@@ -19,6 +19,7 @@ public class GameRectangle extends JComponent {
 	private int circleRadius;
 	private GridBagConstraints gbc;
 	private GridBagLayout gridBagLayout;
+	private Color playerColor;
 	
 	
 	public GameRectangle(int newMargin)
@@ -39,7 +40,7 @@ public class GameRectangle extends JComponent {
 	
 	public void fillCircle(int x, int y)
 	{
- 		circleTab[x][y].setCurrentColor(Color.RED);
+ 		circleTab[x][y].setCurrentColor(playerColor);
 		repaint();
 	}
 //Init methods/////////////////////////////////////////////	
@@ -84,5 +85,10 @@ public class GameRectangle extends JComponent {
 	public int getWidth()
 	{
 		return width;
+	}
+	
+	public void setPlayerColor(Color color)
+	{
+		playerColor = color;
 	}
 }
