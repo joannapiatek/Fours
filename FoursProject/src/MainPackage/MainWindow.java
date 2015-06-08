@@ -19,6 +19,7 @@ public class MainWindow {
 	private JFrame frmFours;
 	private GamePanel gamePanel;
 	private ConfigFrame configFrame;
+
 	
 	/**
 	 * Launch the application.
@@ -108,7 +109,6 @@ public class MainWindow {
 		
 		frmFours.pack();
 	}
-	
 	
 	public void createFrame()
 	{
