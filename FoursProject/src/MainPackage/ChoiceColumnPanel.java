@@ -153,13 +153,12 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 		triangleTab[oldColumn].setColor(triangleTab[0].bgdColor);
 		currentColumn = newColumn;
 		
+		repaint();
 		propChangeSupport.firePropertyChange("currentColumn", oldColumn, newColumn);
 		if ( !emptyColumnsLeft() )
 		{
 			propChangeSupport.firePropertyChange("areColumnsFull", false, areColumnsFull);
 		}
-		//triangleTab[currentColumn].setColor(playerColor);
-		repaint();
 	}
 	
 	public void refreshColor()
