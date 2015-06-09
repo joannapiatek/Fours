@@ -47,11 +47,6 @@ public class GameRectangle extends JComponent {
 	public void circleTabInit()
 	{
 		circleTab = new GameCircle [rows][columns];
-		circleTabClear();
-	}
-	
-	public void circleTabClear()
-	{
 		gbc.gridy = 0;
 		for (int i=0; i<rows; i++)
 		{
@@ -61,7 +56,20 @@ public class GameRectangle extends JComponent {
 				add(circleTab[i][j], gbc);
 			}
 			gbc.gridy++;
-		}	
+		}
+	}
+	
+	public void circleTabClear()
+	{
+		for (int i=0; i<rows; i++)
+		{
+			for (int j=0; j<columns; j++)
+			{
+				circleTab[i][j].resetColor();
+				circleTab[i][j].disableFilled();
+			}
+		}
+		repaint();
 	}
 	public void layoutInit()
 	{

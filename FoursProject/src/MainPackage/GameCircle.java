@@ -16,7 +16,6 @@ public class GameCircle extends JComponent
 		setPreferredSize(new Dimension(radius, radius));
 		disableFilled();		
 		currentColor = Color.white;
-	
 	}
 	
 	
@@ -30,7 +29,6 @@ public class GameCircle extends JComponent
         
         g.setColor(currentColor);
         g.fillOval(0, 0, w, h);
-        
     }
 	
 
@@ -57,6 +55,10 @@ public class GameCircle extends JComponent
 	public void setCurrentColor(Color color) {
 		currentColor=color;
 		setFilled();
+	}
+	
+	public void resetColor() {
+		currentColor = Color.WHITE;
 	}
 
 }

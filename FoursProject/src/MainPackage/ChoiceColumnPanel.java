@@ -22,7 +22,7 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 	private int width;
 	private int height;
 	public int[] columnsPointers;
-	private int currentColumn = 0;
+	private int currentColumn;
 	private int columns = 7;
 	private int rows = 6;
 	private Color mainColor = Color.DARK_GRAY;
@@ -76,7 +76,7 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 			triangleTab[i] = new Triangle(triangleWidth,triangleHeight, i);
 			triangleTab[i].addMouseListener(this);
 		}
-		//triangleTab[currentColumn].setColor(playerColor);
+
 		addMouseListener(this);
 	}
 	
@@ -102,7 +102,6 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 			if (i==0)
 				gbc.insets = new Insets(0, triangleMargin, triangleMargin, 0);
 		}
-		
 	}
 	
 //Columns services////////////////////////////////////////
@@ -134,16 +133,11 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 	public void changeColumn(int newColumn)
 	{
 		int oldColumn = 0;
-		if (newColumn != currentColumn){
-			oldColumn = currentColumn;
-		}
-		else if(newColumn == 0){
-			oldColumn = 1;
-		}
-		else {
-			oldColumn = 0;
-		}
-			
+		if (newColumn != currentColumn)
+		{	oldColumn = currentColumn;	}
+		else if(newColumn == 0)
+		{	oldColumn = 1;	}
+		else {	oldColumn = 0;	}
 			
 		triangleTab[oldColumn].setColor(triangleTab[0].bgdColor);
 		currentColumn = newColumn;
@@ -153,6 +147,14 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 		repaint();
 	}
 	
+	public void setColumnInitialValues()
+	{
+		currentColumn = 0;
+		for (int i = 0; i < columns; i++)
+		{
+			columnsPointers[i] = rows-1;
+		}
+	}
 //Get, set//////////////////////////////////////////////////////	
 	public int getHeight()
 	{

@@ -1,10 +1,13 @@
 package MainPackage;
 import java.awt.EventQueue;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
@@ -13,9 +16,10 @@ import javax.swing.JLabel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.concurrent.FutureTask;
 
 
-public class MainWindow implements GameStartListener{
+public class MainWindow {
 	
 	private MainFrame frmFours;
 	
@@ -60,7 +64,10 @@ public class MainWindow implements GameStartListener{
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 		frmFours.getContentPane().setLayout(gridBagLayout);
 		
+		Font playersFont = new Font("Arial", Font.BOLD, 20);
 		frmFours.lblGracz_1 = new JLabel("Gracz1");
+		frmFours.lblGracz_1.setFont(playersFont);
+		//frmFours.lblGracz_1.setBorder(BorderFactory.createBevelBorder(1));
 		GridBagConstraints gbc_lblGracz_1 = new GridBagConstraints();
 		gbc_lblGracz_1.insets = new Insets(0, 0, 5, 5);
 		gbc_lblGracz_1.gridx = 0;
@@ -68,6 +75,7 @@ public class MainWindow implements GameStartListener{
 		frmFours.getContentPane().add(frmFours.lblGracz_1, gbc_lblGracz_1);
 		
 		frmFours.lblGracz_2 = new JLabel("Gracz2");
+		frmFours.lblGracz_2.setFont(playersFont);
 		GridBagConstraints gbc_lblGracz_2 = new GridBagConstraints();
 		gbc_lblGracz_2.insets = new Insets(0, 0, 5, 5);
 		gbc_lblGracz_2.gridx = 2;
@@ -81,22 +89,11 @@ public class MainWindow implements GameStartListener{
 				createFrame();
 			}
 		});
-		
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton.gridx = 3;
 		gbc_btnNewButton.gridy = 1;
 		frmFours.getContentPane().add(btnNewButton, gbc_btnNewButton);
-		
-//////////////////////////////////////////////////////////////
-		/*frmFours.gamePanel = new GamePanel();
-		GridBagConstraints gbc_gamePanel = new GridBagConstraints();
-		gbc_gamePanel.gridheight = 3;
-		gbc_gamePanel.gridwidth = 3;
-		gbc_gamePanel.gridx = 0;
-		gbc_gamePanel.gridy = 2;
-		frmFours.getContentPane().add(frmFours.gamePanel, gbc_gamePanel);*/
-//////////////////////////////////////////////////////////////////		
 		
 		JButton btnWyniki = new JButton("Wyniki");
 		GridBagConstraints gbc_btnWyniki = new GridBagConstraints();
@@ -106,27 +103,35 @@ public class MainWindow implements GameStartListener{
 		gbc_btnWyniki.gridy = 2;
 		frmFours.getContentPane().add(btnWyniki, gbc_btnWyniki);
 		
+		JButton btnOgrze = new JButton("O grze");
+		btnOgrze.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) 
+				{
+					showInfoPane();
+				}
+			});
+		GridBagConstraints gbc_btnOgrze = new GridBagConstraints();
+		gbc_btnOgrze.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnOgrze.insets = new Insets(0, 0, 5, 0);
+		gbc_btnOgrze.gridx = 3;
+		gbc_btnOgrze.gridy = 3;
+		frmFours.getContentPane().add(btnOgrze, gbc_btnOgrze);
+		
 		frmFours.pack();
 	}
 	
 	public void createFrame()
 	{
-		/*EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {*/
-					frmFours.cfgFrame = new ConfigFrame();
-					frmFours.cfgFrame.setVisible(true);
-					frmFours.cfgFrame.addListener(frmFours);
-				/*} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});*/
+		frmFours.cfgFrame = new ConfigFrame();
+		frmFours.cfgFrame.setVisible(true);
+		frmFours.cfgFrame.addListener(frmFours);
 	}
-
-	@Override
-	public void gameStart() {
-		// TODO Auto-generated method stub
-		
+	
+	public void showInfoPane()
+	{
+		JOptionPane.showMessageDialog(frmFours,
+			    "text instrukcji\n",
+			    "Instrukcja do gry",
+			    JOptionPane.INFORMATION_MESSAGE);
 	}
 }

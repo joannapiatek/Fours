@@ -35,29 +35,9 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 	public void createGame()
 	{
 		gamePanel = new GamePanel();
-		GridBagConstraints gbc_gamePanel = new GridBagConstraints();
-		gbc_gamePanel.gridheight = 3;
-		gbc_gamePanel.gridwidth = 3;
-		gbc_gamePanel.gridx = 0;
-		gbc_gamePanel.gridy = 2;
-		getContentPane().add(gamePanel, gbc_gamePanel);
-		
-		player1 = cfgFrame.getPlayer1();
-		player2 = cfgFrame.getPlayer2();
-		player1.myLabel = lblGracz_1;
-		player2.myLabel = lblGracz_2;
-		
-		//Lista graczy dla u³atwienia prze³¹czania pomiêdzy nimi
-		playerList = gamePanel.playerList;
-		playerList.add(player1);
-		playerList.add(player2);
-		
-		for (int i = 0; i< playerList.size(); i++)
-		{
-			playerList.get(i).myLabel.setText("" + playerList.get(i).getName()); 
-		}
-		
 		gamePanel.addPropertyChangeListener(this);
+		setPanel();
+		initPlayers();
 		start();
 	}
 	
@@ -85,12 +65,11 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 		if ( CheckAlgorithm.checkAll(playerList.get(active)) )
 		{
 			JOptionPane.showMessageDialog(this,
-				    "A kto zwyciêzc¹? "+ playerList.get(active).getName() + "!",
+				    "Zwyciezc¹ zostaje "+ playerList.get(active).getName() + "!",
 				    "Koniec gry!",
 				    JOptionPane.PLAIN_MESSAGE);
 			//czyszczenie planszy
 			clear();
-			gamePanel.clear();
 		}
 		else
 			changeTurns();
@@ -98,7 +77,11 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 	
 	public void clear()
 	{
+		gamePanel.clear();
 		remove(gamePanel);
+		setPanel();
+		revalidate();
+		start();
 	}
 	
 	//Uruchamia siê, gdy ruch zosta³ wykonany prawid³owo - GamePanel, linia 90-91
@@ -107,4 +90,36 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 		gamePanel.resetSuccess();
 		isGameWon();
 	}
+	
+//inicjalizacja	
+	public void setPanel()
+	{
+		
+		GridBagConstraints gbc_gamePanel = new GridBagConstraints();
+		gbc_gamePanel.gridheight = 3;
+		gbc_gamePanel.gridwidth = 3;
+		gbc_gamePanel.gridx = 0;
+		gbc_gamePanel.gridy = 2;
+		getContentPane().add(gamePanel, gbc_gamePanel);
+	}
+	
+	public void initPlayers()
+	{
+		player1 = cfgFrame.getPlayer1();
+		player2 = cfgFrame.getPlayer2();
+		player1.myLabel = lblGracz_1;
+		player2.myLabel = lblGracz_2;
+		
+		//Lista graczy dla u³atwienia prze³¹czania pomiêdzy nimi
+		playerList = gamePanel.playerList;
+		playerList.add(player1);
+		playerList.add(player2);
+		
+		for (int i = 0; i< playerList.size(); i++)
+		{
+			playerList.get(i).myLabel.setText("" + playerList.get(i).getName()); 
+		}
+	}
+	
+	
 }
