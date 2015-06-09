@@ -2,153 +2,80 @@ package MainPackage;
 
 public class CheckAlgorithm {
 	
-	private int rows;
-	private int columns;
-	private boolean player1Win;
-	private boolean player2Win;
-	private boolean [][] player1Tab;
-	private boolean [][] player2Tab;
-	private Player pl1;
-	private Player pl2;
-		
-	public CheckAlgorithm(int rows, int columns, Player player1, Player player2){
-		this.rows = rows;
-		this.columns = columns;
-		
-		Player pl1 = player1;
-		Player pl2 = player2;
-		
-		playerTabInit();
-	}
+	private static Player player;
+	private static boolean playerWon;
+
 	
-	public void playerTabInit()
-	{
-		player1Tab = new boolean [rows][columns];
-		player2Tab = new boolean [rows][columns];
-		
-		for (int i=0; i<6; i++)
-		{
-			for (int j=0; j<7; j++)
-			{
-				player1Tab[i][j]=false;
-				player2Tab[i][j]=false;
-			}
-		}
-	}
-	
-	public void checkAll()
+	public static boolean checkAll(Player player)
 	{
 		checkHorizontal();
-		if(player1Win || player2Win)
+		if(playerWon)
 		{
-			playerWonAction();
+			return playerWon;
 		}
 		
 		checkVertical();
-		if(player1Win || player2Win)
+		if(playerWon)
 		{
-			playerWonAction();
+			return playerWon;
 		}
 		
 		checkDiagonal();
+		return playerWon;
 	}
 	
 	
-	public void checkHorizontal()
+	public static void checkHorizontal()
 	{
 		for(int i=0; i<6; i++)
 		{
 			for(int j=0; j<4; j++)
 			{
-				if(pl1.isActiveTurn()){
-					if(player1Tab[i][j] && player1Tab[i][j+1] && player1Tab[i][j+2] && player1Tab[i][j+3])
-						player1Win = true;
-				}
-				
-				if(pl2.isActiveTurn()){
-					if(player2Tab[i][j] && player2Tab[i][j+1] && player2Tab[i][j+2] && player2Tab[i][j+3])
-						player2Win = true;
-				}
-				
+				if(player.playerTab[i][j] && player.playerTab[i][j+1] && player.playerTab[i][j+2] && player.playerTab[i][j+3])
+					playerWon = true;
 			}
 		}
 	}
 	
-	public void checkVertical()
+	public static void checkVertical()
 	{
 		for (int j=0; j<7; j++)
 		{
 			for (int i=0; i<3; i++)
 			{
-				if(pl1.isActiveTurn()){
-					if(player1Tab[i][j] && player1Tab[i+1][j] && player1Tab[i+2][j] && player1Tab[i+3][j])
-						player1Win = true;
-				}
-				
-				if(pl2.isActiveTurn()){
-					if(player2Tab[i][j] && player2Tab[i+1][j] && player2Tab[i+2][j] && player2Tab[i+3][j])
-						player2Win = true;
-				}
+				if(player.playerTab[i][j] && player.playerTab[i+1][j] && player.playerTab[i+2][j] && player.playerTab[i+3][j])
+					playerWon = true;
 			}
 		}
 	}
 	
-	public void checkDiagonal()
+	public static void checkDiagonal()
 	{
 		slash();			//			/
-		if(player1Win || player2Win)
-		{
-			playerWonAction();
-		}
-		
 		backslash(); 		//			\
-		if(player1Win || player2Win)
-		{
-			playerWonAction();
-		}
 	}
 	
-	public void slash()
+	public static void slash()
 	{
 		for (int i=0; i<3; i++)
 		{
 			for(int j=0; j<4; j++)
 			{
-				if(pl1.isActiveTurn()){
-					if(player1Tab[i][j] && player1Tab[i+1][j+1] && player1Tab[i+2][j+2] && player1Tab[i+3][j+3])
-						player1Win = true;
-				}
-				
-				if(pl2.isActiveTurn()){
-					if(player2Tab[i][j] && player2Tab[i+1][j+1] && player2Tab[i+2][j+2] && player2Tab[i+3][j+3])
-						player2Win = true;
-				}
+				if(player.playerTab[i][j] && player.playerTab[i+1][j+1] && player.playerTab[i+2][j+2] && player.playerTab[i+3][j+3])
+					playerWon = true;
 			}
 		}
 	}
 	
-	public void backslash()
+	public static void backslash()
 	{
 		for (int i=0; i<3; i++)
 		{
 			for(int j=3; j<7; j++)
 			{
-				if(pl1.isActiveTurn()){
-					if(player1Tab[i][j] && player1Tab[i+1][j-1] && player1Tab[i+2][j-2] && player1Tab[i+3][j-3])
-						player1Win = true;
-				}
-				
-				if(pl2.isActiveTurn()){
-					if(player2Tab[i][j] && player2Tab[i+1][j-1] && player2Tab[i+2][j-2] && player2Tab[i+3][j-3])
-						player2Win = true;
-				}
+				if(player.playerTab[i][j] && player.playerTab[i+1][j-1] && player.playerTab[i+2][j-2] && player.playerTab[i+3][j-3])
+					playerWon = true;
 			}
 		}
 	}
-	
-	public void playerWonAction()
-	{
-		// jak ktoœ wygra³, to dzieje siê to:
-	}
-	
 }
