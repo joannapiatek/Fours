@@ -27,14 +27,7 @@ public class Player {
 	public void playerTabInit(){
 	
 		playerTab = new boolean [rows][columns];
-		
-		for (int i=0; i<rows; i++)
-		{
-			for (int j=0; j<columns; j++)
-			{
-				playerTab[i][j]=false;
-			}
-		}
+		clear();
 	}
 	
 	
@@ -75,5 +68,16 @@ public class Player {
 	public void fillField(int x, int y)
 	{
 		playerTab[x][y] = true;
+	}
+	
+	public void clear()
+	{
+		for (int i=0; i<rows; i++)
+		{
+			for (int j=0; j<columns; j++)
+			{
+				playerTab[i][j]=false;
+			}
+		}
 	}
 }
