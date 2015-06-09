@@ -21,6 +21,7 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 	public GamePanel gamePanel;
 	public JLabel lblGracz_1;
 	public JLabel lblGracz_2;
+	public JLabel lblGameTitle;
 	public Player player1;
 	public Player player2;
 	public List<Player> playerList;
@@ -71,7 +72,7 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 		if ( CheckAlgorithm.checkAll(playerList.get(active)) )
 		{
 			JOptionPane.showMessageDialog(this,
-				    "Zwyciezc¹ zostaje "+ playerList.get(active).getName() + "!",
+				    "Zwyciê¿c¹ zostaje "+ playerList.get(active).getName() + "!",
 				    "Koniec gry!",
 				    JOptionPane.PLAIN_MESSAGE);
 			
