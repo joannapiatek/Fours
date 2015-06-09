@@ -71,4 +71,9 @@ public class Player {
 	{
 		return circleColor;
 	}
+	
+	public void fillField(int x, int y)
+	{
+		playerTab[x][y] = true;
+	}
 }

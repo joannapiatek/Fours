@@ -47,6 +47,12 @@ public class GameRectangle extends JComponent {
 	public void circleTabInit()
 	{
 		circleTab = new GameCircle [rows][columns];
+		circleTabClear();
+	}
+	
+	public void circleTabClear()
+	{
+		gbc.gridy = 0;
 		for (int i=0; i<rows; i++)
 		{
 			for (int j=0; j<columns; j++)
@@ -55,16 +61,14 @@ public class GameRectangle extends JComponent {
 				add(circleTab[i][j], gbc);
 			}
 			gbc.gridy++;
-		}		
+		}	
 	}
-	
 	public void layoutInit()
 	{
 		gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
 		gbc = new GridBagConstraints();
 		gbc.insets = new Insets(4,4,4,4);
-		gbc.gridy = 0;
 	}
 	
 	public void setWidthAndHeight()
