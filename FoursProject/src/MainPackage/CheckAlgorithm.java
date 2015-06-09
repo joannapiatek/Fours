@@ -2,30 +2,29 @@ package MainPackage;
 
 public class CheckAlgorithm {
 	
-	private static Player player;
 	private static boolean playerWon;
 
 	
 	public static boolean checkAll(Player player)
 	{
-		checkHorizontal();
+		checkHorizontal(player);
 		if(playerWon)
 		{
 			return playerWon;
 		}
 		
-		checkVertical();
+		checkVertical(player);
 		if(playerWon)
 		{
 			return playerWon;
 		}
 		
-		checkDiagonal();
+		checkDiagonal(player);
 		return playerWon;
 	}
 	
 	
-	public static void checkHorizontal()
+	public static void checkHorizontal(Player player)
 	{
 		for(int i=0; i<6; i++)
 		{
@@ -37,7 +36,7 @@ public class CheckAlgorithm {
 		}
 	}
 	
-	public static void checkVertical()
+	public static void checkVertical(Player player)
 	{
 		for (int j=0; j<7; j++)
 		{
@@ -49,13 +48,13 @@ public class CheckAlgorithm {
 		}
 	}
 	
-	public static void checkDiagonal()
+	public static void checkDiagonal(Player player)
 	{
-		slash();			//			/
-		backslash(); 		//			\
+		slash(player);			//			/
+		backslash(player); 		//			\
 	}
 	
-	public static void slash()
+	public static void slash(Player player)
 	{
 		for (int i=0; i<3; i++)
 		{
@@ -67,7 +66,7 @@ public class CheckAlgorithm {
 		}
 	}
 	
-	public static void backslash()
+	public static void backslash(Player player)
 	{
 		for (int i=0; i<3; i++)
 		{
