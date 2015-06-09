@@ -21,7 +21,6 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 	private static final long serialVersionUID = 1L;
 	private int width;
 	private int height;
-	private boolean areColumnsFull;
 	public int[] columnsPointers;
 	private int currentColumn;
 	private int columns = 7;
@@ -43,7 +42,6 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 		width = w;
 		height = 20;
 		currentColumn = 0;
-		areColumnsFull = false;
 		setPreferredSize(new Dimension(width, height));
 		
 		columnsPointersTableInit();
@@ -138,7 +136,7 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 			if (! isColumnFilled(i) )
 				return true;
 		}
-		return false;
+			return false;
 	}
 
 	public void changeColumn(int newColumn)
@@ -155,10 +153,6 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 		
 		repaint();
 		propChangeSupport.firePropertyChange("currentColumn", oldColumn, newColumn);
-		if ( !emptyColumnsLeft() )
-		{
-			propChangeSupport.firePropertyChange("areColumnsFull", false, areColumnsFull);
-		}
 	}
 	
 	public void refreshColor()
@@ -170,7 +164,6 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 	public void setInitialValues()
 	{
 		currentColumn = 0;
-		areColumnsFull = false;
 		for (int i=0; i<columns; i++)
 		{
 			triangleTab[i].setColor(triangleTab[0].bgdColor);

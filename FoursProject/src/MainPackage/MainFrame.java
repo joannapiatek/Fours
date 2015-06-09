@@ -79,8 +79,20 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 		}
 		else
 		{
-			changeTurns();
-			gamePanel.refreshColor();
+			if ( gamePanel.emptyFieldsLeft() )
+			{
+				changeTurns();
+				gamePanel.refreshColor();
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(this,
+					    "Plansza zape³niona! Gra rozpoczyna siê od nowa",
+					    "Koniec gry!",
+					    JOptionPane.PLAIN_MESSAGE);
+				
+				restart();
+			}
 		}	
 	}
 	
@@ -94,24 +106,12 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 		start();
 	}
 	
-	//Uruchamia siê, gdy ruch zosta³ wykonany prawid³owo - GamePanel, linia 90-91
+	//Uruchamia siê, gdy ruch zosta³ wykonany prawid³owo
 	@Override
-	public void propertyChange(PropertyChangeEvent evt) {
-		String name = evt.getPropertyName();
-		if (name == "success")
-		{
+	public void propertyChange(PropertyChangeEvent evt) 
+	{
 			gamePanel.resetSuccess();
 			isGameWon();
-		}
-		else if (name == "areColumnsFull")
-		{
-			JOptionPane.showMessageDialog(this,
-				    "Plansza zape³niona! Rozpoczynam now¹ grê",
-				    "Koniec gry!",
-				    JOptionPane.PLAIN_MESSAGE);
-			
-			restart();
-		}
 	}
 	
 //inicjalizacja	

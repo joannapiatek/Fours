@@ -107,6 +107,11 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 	{
 		ChoiceColumnPanel.refreshColor();
 	}
+	
+	public boolean emptyFieldsLeft()
+	{
+		return ChoiceColumnPanel.emptyColumnsLeft();
+	}
 	public boolean succeed()
 	{
 		return success;
@@ -128,5 +133,3 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 	}
 	
 }
-
-
