@@ -24,17 +24,10 @@ public class Player {
 		playerTabInit();
 	}
 	
-	public void playerTabInit(){
-	
+	public void playerTabInit()
+	{
 		playerTab = new boolean [rows][columns];
-		
-		for (int i=0; i<rows; i++)
-		{
-			for (int j=0; j<columns; j++)
-			{
-				playerTab[i][j]=false;
-			}
-		}
+		clear();
 	}
 	
 	
@@ -70,5 +63,16 @@ public class Player {
 	public Color getColor()
 	{
 		return circleColor;
+	}
+	
+	public void clear()
+	{
+		for (int i=0; i<rows; i++)
+		{
+			for (int j=0; j<columns; j++)
+			{
+				playerTab[i][j]=false;
+			}
+		}
 	}
 }
