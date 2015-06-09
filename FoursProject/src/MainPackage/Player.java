@@ -24,8 +24,8 @@ public class Player {
 		playerTabInit();
 	}
 	
-	public void playerTabInit()
-	{
+	public void playerTabInit(){
+	
 		playerTab = new boolean [rows][columns];
 		clear();
 	}
