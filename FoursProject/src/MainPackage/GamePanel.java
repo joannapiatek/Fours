@@ -114,7 +114,11 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 	
 	public void clear()
 	{
-		gameRectangle.circleTabClear();
+		//gameRectangle.circleTabClear();
+		for (int i=0; i<playerList.size(); i++)
+		{
+			playerList.get(i).clear();
+		}
 	}
 	
 }

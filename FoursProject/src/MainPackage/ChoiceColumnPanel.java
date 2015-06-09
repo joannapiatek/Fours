@@ -125,7 +125,7 @@ public class ChoiceColumnPanel extends JComponent implements MouseListener{
 	
 	public boolean isColumnFilled(int column)
 	{
-		if( columnsPointers[column] <= 0 )
+		if( columnsPointers[column] < 0 )
 			return true;
 		
 		return false;

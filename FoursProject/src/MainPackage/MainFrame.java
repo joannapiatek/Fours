@@ -89,10 +89,16 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 				    "Koniec gry!",
 				    JOptionPane.PLAIN_MESSAGE);
 			//czyszczenie planszy
+			clear();
 			gamePanel.clear();
 		}
 		else
 			changeTurns();
+	}
+	
+	public void clear()
+	{
+		remove(gamePanel);
 	}
 	
 	//Uruchamia siê, gdy ruch zosta³ wykonany prawid³owo - GamePanel, linia 90-91

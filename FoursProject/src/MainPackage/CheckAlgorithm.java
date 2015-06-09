@@ -7,6 +7,8 @@ public class CheckAlgorithm {
 	
 	public static boolean checkAll(Player player)
 	{
+		playerWon = false;
+		
 		checkHorizontal(player);
 		if(playerWon)
 		{
