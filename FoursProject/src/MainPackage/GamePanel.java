@@ -103,6 +103,10 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 		gameRectangle.setPlayerColor(color);
 	}
 	
+	public void refreshColor()
+	{
+		ChoiceColumnPanel.refreshColor();
+	}
 	public boolean succeed()
 	{
 		return success;
@@ -115,8 +119,8 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 	public void clear()
 	{
 		gameRectangle.circleTabClear();
+		ChoiceColumnPanel.setInitialValues();
 		repaint();
-		ChoiceColumnPanel.setColumnInitialValues();
 		for (int i=0; i<playerList.size(); i++)
 		{
 			playerList.get(i).clear();

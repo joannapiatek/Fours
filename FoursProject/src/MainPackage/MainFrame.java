@@ -34,9 +34,16 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 	
 	public void createGame()
 	{
+		if (gamePanel != null)
+		{
+			gamePanel.removePropertyChangeListener(this);
+			gamePanel.clear();
+			remove(gamePanel);
+		}
 		gamePanel = new GamePanel();
 		gamePanel.addPropertyChangeListener(this);
 		setPanel();
+		revalidate();
 		initPlayers();
 		start();
 	}
@@ -61,21 +68,25 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 	
 	public void isGameWon()
 	{
-		//tu sprawdzanie, czy ktoœ wygra³
 		if ( CheckAlgorithm.checkAll(playerList.get(active)) )
 		{
+			repaint();
 			JOptionPane.showMessageDialog(this,
 				    "Zwyciezc¹ zostaje "+ playerList.get(active).getName() + "!",
 				    "Koniec gry!",
 				    JOptionPane.PLAIN_MESSAGE);
-			//czyszczenie planszy
-			clear();
+			
+			restart();
 		}
 		else
+		{
 			changeTurns();
+			gamePanel.refreshColor();
+		}	
 	}
 	
-	public void clear()
+	
+	public void restart()
 	{
 		gamePanel.clear();
 		remove(gamePanel);
@@ -87,14 +98,26 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 	//Uruchamia siê, gdy ruch zosta³ wykonany prawid³owo - GamePanel, linia 90-91
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		gamePanel.resetSuccess();
-		isGameWon();
+		String name = evt.getPropertyName();
+		if (name == "success")
+		{
+			gamePanel.resetSuccess();
+			isGameWon();
+		}
+		else if (name == "areColumnsFull")
+		{
+			JOptionPane.showMessageDialog(this,
+				    "Plansza zape³niona! Rozpoczynam now¹ grê",
+				    "Koniec gry!",
+				    JOptionPane.PLAIN_MESSAGE);
+			
+			restart();
+		}
 	}
 	
 //inicjalizacja	
 	public void setPanel()
 	{
-		
 		GridBagConstraints gbc_gamePanel = new GridBagConstraints();
 		gbc_gamePanel.gridheight = 3;
 		gbc_gamePanel.gridwidth = 3;
