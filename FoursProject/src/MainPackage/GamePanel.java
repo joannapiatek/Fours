@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -24,8 +26,7 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 	private boolean success = false;
 	private ChoiceColumnPanel ChoiceColumnPanel;
 	private GameRectangle gameRectangle;	
-	public Player player1;
-	public Player player2;
+	public List<Player> playerList;
 	
 	private PropertyChangeSupport propChangeSupport = new PropertyChangeSupport(this);
 	
@@ -33,6 +34,7 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 	{
 		componentsInit();
 		setComponents();
+		playerList = new ArrayList<Player>();
 	}
 	
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -87,8 +89,9 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 	public void propertyChange(PropertyChangeEvent arg0) 
 	{
 		int col = ChoiceColumnPanel.getCurrentColumn();
-		gameRectangle.fillCircle(ChoiceColumnPanel.columnsPointers[col], col);
-		
+		int row = ChoiceColumnPanel.columnsPointers[col];
+		gameRectangle.fillCircle(row, col);
+		playerList.get(0).fillField(row, col);
 		
 		success = ChoiceColumnPanel.decrColumnPointer(col);
 		propChangeSupport.firePropertyChange("success", false, success);
@@ -107,6 +110,11 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 	public void resetSuccess()
 	{
 		success = false;
+	}
+	
+	public void clear()
+	{
+		gameRectangle.circleTabClear();
 	}
 	
 }
