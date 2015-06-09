@@ -12,7 +12,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class MainFrame extends JFrame implements GameStartListener, PropertyChangeListener{
+public class MainFrame extends JFrame implements GameStartListener, PropertyChangeListener {
 
 
 	private static final long serialVersionUID = 1L;
@@ -20,8 +20,8 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 	public GamePanel gamePanel;
 	public JLabel lblGracz_1;
 	public JLabel lblGracz_2;
-	public Player player1;
-	public Player player2;
+	/*public Player player1;
+	public Player player2;*/
 	public List<Player> playerList;
 	
 	@Override
@@ -39,15 +39,15 @@ public class MainFrame extends JFrame implements GameStartListener, PropertyChan
 		gbc_gamePanel.gridy = 2;
 		getContentPane().add(gamePanel, gbc_gamePanel);
 		
-		player1 = cfgFrame.getPlayer1();
-		player2 = cfgFrame.getPlayer2();
-		player1.myLabel = lblGracz_1;
-		player2.myLabel = lblGracz_2;
+		gamePanel.player1 = cfgFrame.getPlayer1();
+		gamePanel.player2 = cfgFrame.getPlayer2();
+		gamePanel.player1.myLabel = lblGracz_1;
+		gamePanel.player2.myLabel = lblGracz_2;
 		
 		//Lista graczy dla u³atwienia prze³¹czania pomiêdzy nimi
 		playerList = new ArrayList<Player>();
-		playerList.add(player1);
-		playerList.add(player2);
+		playerList.add(gamePanel.player1);
+		playerList.add(gamePanel.player2);
 		
 		for (int i = 0; i< playerList.size(); i++)
 		{

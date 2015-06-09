@@ -24,6 +24,8 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 	private boolean success = false;
 	private ChoiceColumnPanel ChoiceColumnPanel;
 	private GameRectangle gameRectangle;	
+	public Player player1;
+	public Player player2;
 	
 	private PropertyChangeSupport propChangeSupport = new PropertyChangeSupport(this);
 	
@@ -86,6 +88,7 @@ public class GamePanel extends JPanel implements PropertyChangeListener {
 	{
 		int col = ChoiceColumnPanel.getCurrentColumn();
 		gameRectangle.fillCircle(ChoiceColumnPanel.columnsPointers[col], col);
+		
 		
 		success = ChoiceColumnPanel.decrColumnPointer(col);
 		propChangeSupport.firePropertyChange("success", false, success);

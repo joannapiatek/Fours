@@ -13,12 +13,30 @@ public class Player {
 	private int turnCount;
 	private int winCount;
 	public JLabel myLabel;
+	public boolean [][] playerTab;
+	private int rows = 6;
+	private int columns = 7;
 
 	
 	public Player(String playerName, Color playerColor){
 		Name = playerName;
 		circleColor = playerColor;
+		playerTabInit();
 	}
+	
+	public void playerTabInit(){
+	
+		playerTab = new boolean [rows][columns];
+		
+		for (int i=0; i<rows; i++)
+		{
+			for (int j=0; j<columns; j++)
+			{
+				playerTab[i][j]=false;
+			}
+		}
+	}
+	
 	
 	public int getTurnCount(){
 		return turnCount;
