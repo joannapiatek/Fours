@@ -71,7 +71,8 @@ public class MainWindow {
 		frmFours.lblGameTitle.setForeground(Color.RED);
 		GridBagConstraints gbc_lblGameTitle = new GridBagConstraints();
 		gbc_lblGameTitle.insets = new Insets(0, 0, 0, 0);
-		gbc_lblGameTitle.gridx = 1;
+		gbc_lblGameTitle.gridwidth = 2;
+		gbc_lblGameTitle.gridx = 0;
 		gbc_lblGameTitle.gridy = 2;
 		frmFours.getContentPane().add(frmFours.lblGameTitle, gbc_lblGameTitle);
 		
